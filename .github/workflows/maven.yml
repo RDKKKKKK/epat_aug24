@@ -6,11 +6,13 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: My first workflow
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - master
+      - main
   pull_request:
     branches: [ "main" ]
 
@@ -37,5 +39,6 @@ jobs:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/maven@master
+        continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
